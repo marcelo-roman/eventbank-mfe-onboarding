@@ -1,0 +1,123 @@
+import { type Locale } from './locale';
+
+const en = {
+  errors: {
+    generic: 'Something failed. Try again.',
+    sessionEnded: 'Your session ended. Sign in again.',
+    forbidden: 'You are not allowed to do this.',
+    status: (status: number) => `The server answered ${status}.`,
+    codes: {
+      invalid_cpf: 'The CPF is not valid.',
+      cpf_in_use: 'There is already a customer with this CPF.',
+      invalid_name: 'Full name must have a first and a last name.',
+      invalid_phone: 'Phone must have a two-digit area code and 8 or 9 digits.',
+      invalid_email: 'The account has no valid e-mail address.',
+      invalid_birth_date: 'Birth date cannot be in the future.',
+      underage: 'Customers must be of legal age.',
+      already_registered: 'This user has already applied.',
+      not_found: 'This was not found.',
+      forbidden: 'You are not allowed to do this.',
+      concurrency_conflict: 'Someone changed this at the same time. Try again.',
+    } as Record<string, string>,
+  },
+  reasons: {
+    insufficient_funds: 'insufficient funds',
+    account_closed: 'account closed',
+    currency_mismatch: 'currency mismatch',
+  } as Record<string, string>,
+  onboarding: {
+    title: 'Open your account',
+    lede: 'Your application becomes a Customer in the Customers service. When an operator approves it, the Accounts service hears about it and opens your checking account on its own.',
+    loading: 'Loading your application…',
+  },
+  form: {
+    title: 'Tell us who you are',
+    lede: (email: string) => `We use these details to open your account in your name. Your login is ${email}.`,
+    fullName: 'Full name, as on your documents',
+    cpf: 'CPF',
+    cpfPlaceholder: '000.000.000-00',
+    birthDate: 'Birth date',
+    phone: 'Mobile phone',
+    phonePlaceholder: '(11) 98765-4321',
+    sending: 'Sending…',
+    send: 'Send application',
+  },
+  timeline: {
+    title: 'Your application',
+    sent: 'Application sent',
+    rejected: 'Not approved',
+    underReview: 'Under review',
+    underReviewDetail: 'An operator is checking your details.',
+    accountOpening: 'Account opening',
+    accountOpeningDetail: 'Starts as soon as you are approved.',
+    approved: 'Approved',
+    accountOpen: 'Account open',
+    accountOpenDetail: (account: string) => `Branch and account ${account}`,
+    openingAccount: 'Opening your account',
+    openingAccountDetail: 'This takes a moment.',
+    goToAccount: 'Go to your account',
+  },
+};
+
+export type Messages = typeof en;
+
+const ptBR: Messages = {
+  errors: {
+    generic: 'Algo deu errado. Tente de novo.',
+    sessionEnded: 'Sua sessão terminou. Entre novamente.',
+    forbidden: 'Você não tem permissão para fazer isso.',
+    status: (status: number) => `O servidor respondeu ${status}.`,
+    codes: {
+      invalid_cpf: 'O CPF não é válido.',
+      cpf_in_use: 'Já existe um cliente com este CPF.',
+      invalid_name: 'O nome completo precisa ter nome e sobrenome.',
+      invalid_phone: 'O telefone precisa ter DDD de dois dígitos e 8 ou 9 dígitos.',
+      invalid_email: 'A conta não tem um e-mail válido.',
+      invalid_birth_date: 'A data de nascimento não pode estar no futuro.',
+      underage: 'Clientes precisam ser maiores de idade.',
+      already_registered: 'Este usuário já enviou uma proposta.',
+      not_found: 'Não encontrado.',
+      forbidden: 'Você não tem permissão para fazer isso.',
+      concurrency_conflict: 'Alguém alterou isto ao mesmo tempo. Tente de novo.',
+    },
+  },
+  reasons: {
+    insufficient_funds: 'saldo insuficiente',
+    account_closed: 'conta encerrada',
+    currency_mismatch: 'moedas diferentes',
+  },
+  onboarding: {
+    title: 'Abra sua conta',
+    lede: 'Sua proposta vira um Cliente no serviço de clientes. Quando um operador a aprova, o serviço de contas fica sabendo e abre sua conta corrente sozinho.',
+    loading: 'Carregando sua proposta…',
+  },
+  form: {
+    title: 'Conte quem você é',
+    lede: (email: string) => `Usamos estes dados para abrir a conta no seu nome. Seu login é ${email}.`,
+    fullName: 'Nome completo, como nos seus documentos',
+    cpf: 'CPF',
+    cpfPlaceholder: '000.000.000-00',
+    birthDate: 'Data de nascimento',
+    phone: 'Celular',
+    phonePlaceholder: '(11) 98765-4321',
+    sending: 'Enviando…',
+    send: 'Enviar proposta',
+  },
+  timeline: {
+    title: 'Sua proposta',
+    sent: 'Proposta enviada',
+    rejected: 'Recusada',
+    underReview: 'Em análise',
+    underReviewDetail: 'Um operador está conferindo seus dados.',
+    accountOpening: 'Abertura da conta',
+    accountOpeningDetail: 'Começa assim que você for aprovado.',
+    approved: 'Aprovada',
+    accountOpen: 'Conta aberta',
+    accountOpenDetail: (account: string) => `Agência e conta ${account}`,
+    openingAccount: 'Abrindo sua conta',
+    openingAccountDetail: 'Isso leva um instante.',
+    goToAccount: 'Ir para sua conta',
+  },
+};
+
+export const messages: Record<Locale, Messages> = { en, 'pt-BR': ptBR };

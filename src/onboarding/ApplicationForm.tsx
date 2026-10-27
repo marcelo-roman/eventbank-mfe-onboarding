@@ -1,10 +1,12 @@
 import { type SyntheticEvent, useState } from 'react';
 import { useUser } from '../shared/auth';
 import { ErrorMessage } from '../shared/ErrorMessage';
+import { useLocale } from '../shared/i18n/LocaleContext';
 import { digits, maskCpf, maskPhone } from '../shared/masks';
 import { useSubmitApplication } from './api';
 
 export function ApplicationForm() {
+  const { t } = useLocale();
   const user = useUser();
   const submit = useSubmitApplication();
   const [fullName, setFullName] = useState(user.name);
@@ -19,10 +21,10 @@ export function ApplicationForm() {
 
   return (
     <form className="panel form application-form" onSubmit={send}>
-      <h2>Tell us who you are</h2>
-      <p className="muted">We use these details to open your account in your name. Your login is {user.email}.</p>
+      <h2>{t.form.title}</h2>
+      <p className="muted">{t.form.lede(user.email)}</p>
       <label className="field">
-        <span>Full name, as on your documents</span>
+        <span>{t.form.fullName}</span>
         <input
           value={fullName}
           onChange={(event) => {
@@ -33,19 +35,19 @@ export function ApplicationForm() {
       </label>
       <div className="field-row">
         <label className="field">
-          <span>CPF</span>
+          <span>{t.form.cpf}</span>
           <input
             inputMode="numeric"
             value={cpf}
             onChange={(event) => {
               setCpf(maskCpf(event.target.value));
             }}
-            placeholder="000.000.000-00"
+            placeholder={t.form.cpfPlaceholder}
             required
           />
         </label>
         <label className="field">
-          <span>Birth date</span>
+          <span>{t.form.birthDate}</span>
           <input
             type="date"
             value={birthDate}
@@ -57,19 +59,19 @@ export function ApplicationForm() {
         </label>
       </div>
       <label className="field">
-        <span>Mobile phone</span>
+        <span>{t.form.phone}</span>
         <input
           inputMode="tel"
           value={phone}
           onChange={(event) => {
             setPhone(maskPhone(event.target.value));
           }}
-          placeholder="(11) 98765-4321"
+          placeholder={t.form.phonePlaceholder}
           required
         />
       </label>
       <button type="submit" className="button primary" disabled={submit.isPending}>
-        {submit.isPending ? 'Sending…' : 'Send application'}
+        {submit.isPending ? t.form.sending : t.form.send}
       </button>
       <ErrorMessage error={submit.error} />
     </form>
