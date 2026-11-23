@@ -11,7 +11,7 @@
 
 .timeline {
   list-style: none;
-  margin: 20px 0 24px;
+  margin: 16px 0 20px;
   padding: 0;
 }
 
@@ -40,11 +40,11 @@
   top: 24px;
   bottom: 2px;
   width: 2px;
-  background: var(--line);
+  background: var(--border);
 }
 
 .timeline-done {
-  color: var(--read);
+  color: var(--up);
 }
 
 .timeline-done::before {
@@ -52,11 +52,11 @@
 }
 
 .timeline-failed {
-  color: var(--danger);
+  color: var(--down);
 }
 
 .timeline-waiting {
-  color: var(--waiting);
+  color: var(--warn);
 }
 
 .timeline-waiting::before {
